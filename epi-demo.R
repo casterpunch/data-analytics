@@ -1,0 +1,5 @@
+data1 <-read.csv(file.choose(),header = T)
+head(data1)
+str(data1)
+names(data1)
+summary(data1)
