@@ -1,0 +1,63 @@
+GRUMP_data <- read.csv("C:/Users/xiaoj6/Documents/GitHub/data-analytics/Lab1/GPW3_GRUMP_SummaryInformation_2010.csv")
+EPI_data <- read.csv("C:/Users/xiaoj6/Documents/GitHub/data-analytics/Lab1/EPI2010_data.csv")
+EPI_data
+names(EPI_data) <- as.matrix(EPI_data[1, ])
+EPI_data <- EPI_data[-1, ]
+EPI_data[] <- lapply(EPI_data, function(x) 
+  type.convert(as.character(x)))
+EPI_data
+attach(EPI_data)
+fix(EPI_data)
+summary(EPI_data)
+EPI
+tf <- is.na(EPI)
+E <- EPI[!tf]
+summary(EPI)
+fivenum(EPI,na.rm=TRUE)
+stem(EPI)
+hist(EPI, seq(30., 95., 1.0), prob=TRUE)
+lines(density(EPI,na.rm=TRUE,bw=1.)) # or try bw=“SJ”
+rug(EPI)
+plot(ecdf(EPI), do.points=FALSE, verticals=TRUE) 
+par(pty="s") 
+qqnorm(EPI); qqline(EPI)
+x<-seq(30,95,1)
+qqplot(qt(ppoints(250), df = 5), x, xlab = "Q-Q plot for t dsn")
+qqline(x)
+
+summary(DALY)
+fivenum(DALY,na.rm = TRUE)
+lines(density(DALY,na.rm=TRUE,bw=1.))
+rug(DALY)
+plot(ecdf(DALY), do.points=FALSE, verticals=TRUE) 
+par(pty="s") 
+qqnorm(DALY); qqline(DALY)
+y<-seq(0,95,1)
+qqplot(qt(ppoints(250), df = 5), y, xlab = "Q-Q plot for t dsn")
+qqline(y)
+
+
+summary(WATER_H)
+fivenum(WATER_H,na.rm = TRUE)
+lines(density(WATER_H,na.rm=TRUE,bw=1.))
+rug(WATER_H)
+plot(ecdf(WATER_H), do.points=FALSE, verticals=TRUE) 
+par(pty="s") 
+qqnorm(WATER_H); qqline(WATER_H)
+z<-seq(0,100,1)
+qqplot(qt(ppoints(250), df = 5), z, xlab = "Q-Q plot for t dsn")
+qqline(z)
+
+temp_df <- data.frame(EPI, ENVHEALTH, ECOSYSTEM, DALY, AIR_H, WATER_H, AIR_E,WATER_E)
+boxplot(temp_df,horizontal = F, main = 'EPI_Data Intercomparison')
+
+par(mfrow=c(3, 3))
+hist(EPI)
+hist(ENVHEALTH)
+hist(ECOSYSTEM)
+hist(DALY)
+hist(AIR_H)
+hist(WATER_H)
+hist(AIR_E)
+hist(WATER_E)
+hist(BIODIVERSITY)
