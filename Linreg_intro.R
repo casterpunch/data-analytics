@@ -17,3 +17,10 @@ abline(mm)
 abline(mm,col=3,lwd=3) # line color = green, line width = 3
 attributes(mm)
 mm$coefficients
+
+hp <- Homeowners/Population
+pd <- Population/area
+mm <- lm(Immigrant~Income+Population+hp+pd)
+summary(mm)
+lm(formula = Immigrant ~ Income + Population + hp + pd)
+cm <- coef(mm)
